@@ -1,0 +1,3608 @@
+# Black Reading Achievement
+
+```{r Packages, echo=FALSE, message=FALSE, warning=FALSE}
+
+#requires install.packages("pacman")
+pacman::p_load(readxl, janitor, tidyverse)
+
+```
+
+## Alabama {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Alabama") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+```
+
+### Lower Income in Alabama {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Alabama") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Alabama {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Alabama") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Alaska {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Alaska") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Alaska {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Alaska") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Alaska {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Alaska") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Arizona {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Arizona") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Arizona {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Arizona") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Arizona {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Arizona") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Arkansas {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Arkansas") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Arkansas {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Arkansas") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Arkansas {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Arkansas") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## California {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="California") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in California {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="California") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in California {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="California") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Colorado {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Colorado") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Colorado {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Colorado") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Colorado {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Colorado") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Connecticut {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Connecticut") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Connecticut {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Connecticut") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Connecticut {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Connecticut") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Delaware {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Delaware") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Delaware {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Delaware") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Delaware {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Delaware") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Florida {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Florida") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Florida {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Florida") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Florida {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Florida") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Georgia {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Georgia") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Georgia {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Georgia") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Georgia {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Georgia") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Hawaii {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Hawaii") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Hawaii {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Hawaii") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Hawaii {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Hawaii") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+## Idaho {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Idaho") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Idaho {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Idaho") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Idaho {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Idaho") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Illinois {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Illinois") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Illinois {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Illinois") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Illinois {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Illinois") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Indiana {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Indiana") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Indiana {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Indiana") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Indiana {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Indiana") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Iowa {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Iowa") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Iowa {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Iowa") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Iowa {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Iowa") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Kansas {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Kansas") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Kansas {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Kansas") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Kansas {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Kansas") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Kentucky {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Kentucky") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Kentucky {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Kentucky") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Kentucky {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Kentucky") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Louisiana {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Louisiana") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Louisiana {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Louisiana") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Louisiana {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Louisiana") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Maine {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Maine") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Maine {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Maine") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Maine {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Maine") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Maryland {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Maryland") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Maryland {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Maryland") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Maryland {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Maryland") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Massachusetts {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Massachusetts") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Massachusetts {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Massachusetts") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Massachusetts {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Massachusetts") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Michigan {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Michigan") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Michigan {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Michigan") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Michigan {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Michigan") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Minnesota {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Minnesota") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Minnesota {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Minnesota") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Boys in Minnesota {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Minnesota") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Mississippi {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Mississippi") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Mississippi {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Mississippi") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Mississippi {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Mississippi") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Missouri {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Missouri") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Missouri {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Missouri") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Missouri {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Missouri") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Montana {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Montana") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Montana {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Montana") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Montana {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Montana") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Nebraska {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Nebraska") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Nebraska {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Nebraska") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Nebraska {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Nebraska") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Nevada {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Nevada") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Nevada {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Nevada") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Nevada {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Nevada") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## New Hampshire {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New Hampshire") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in New Hampshire {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New Hampshire") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in New Hampshire {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New Hampshire") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## New Jersey {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New Jersey") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in New Jersey {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New Jersey") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in New Jersey {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New Jersey") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## New Mexico {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New Mexico") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in New Mexico {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New Mexico") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in New Mexico {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New Mexico") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## New York {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New York") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in New York {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New York") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in New York {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="New York") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## North Carolina {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="North Carolina") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in North Carolina {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="North Carolina") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in North Carolina {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="North Carolina") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## North Dakota {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="North Dakota") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in North Dakota {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="North Dakota") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in North Dakota {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="North Dakota") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Ohio {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Ohio") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Ohio {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Ohio") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Ohio {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Ohio") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Oklahoma {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Oklahoma") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Oklahoma {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Oklahoma") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Oklahoma {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Oklahoma") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Oregon {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Oregon") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Oregon {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Oregon") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Oregon {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Oregon") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Pennsylvania {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Pennsylvania") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Pennsylvania {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Pennsylvania") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Pennsylvania {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Pennsylvania") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Rhode Island {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Rhode Island") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Rhode Island {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Rhode Island") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Rhode Island {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Rhode Island") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## South Carolina {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="South Carolina") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in South Carolina {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="South Carolina") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in South Carolina {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="South Carolina") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## South Dakota {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="South Dakota") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in South Dakota {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="South Dakota") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in South Dakota {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="South Dakota") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Tennessee {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Tennessee") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Tennessee {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Tennessee") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Tennessee {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Tennessee") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Texas {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Texas") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Texas {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Texas") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Texas {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Texas") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Utah {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Utah") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Utah {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Utah") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Utah {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Utah") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Vermont {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Vermont") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Vermont {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Vermont") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Vermont {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Vermont") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Virginia {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Virginia") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Virginia {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Virginia") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Virginia {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Virginia") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Washington {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Washington") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Washington {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Washington") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Washington {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Washington") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## West Virginia {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="West Virginia") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in West Virginia {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="West Virginia") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in West Virginia {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="West Virginia") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Wisconsin {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Wisconsin") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Wisconsin {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Wisconsin") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Wisconsin {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Wisconsin") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+## Wyoming {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Wyoming") %>%
+  filter(RaceEth=="Black") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(215, 275) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+### Lower Income in Wyoming {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_nslp.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Wyoming") %>%
+  filter(RaceEth=="Black") %>%
+  filter(NSLP=="Eligible") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
+
+### Boys in Wyoming {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8r_race_eth_gen.csv') %>% 
+  filter(Jurisdiction=="National public" | Jurisdiction=="Wyoming") %>%
+  filter(RaceEth=="Black") %>%
+  filter(Gender=="Male") %>%
+  mutate(Mean = as.numeric(Mean)) %>%  
+  ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
+  geom_errorbar(aes(ymin=Mean-(2*SE), ymax=Mean+(2*SE)), width=.2) +
+  geom_line() +
+  geom_point() +
+  ylim(210, 265) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+  ylab("Mean Achievement Estimate") +
+  xlab("Year") +
+  scale_x_continuous(breaks=seq(2003,2022,1)) +
+    ggtitle("Grade 8 Reading") +
+  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+
+
+```
+
