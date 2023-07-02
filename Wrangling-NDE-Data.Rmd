@@ -1,0 +1,213 @@
+```{r Packages, eval= FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+
+#requires install.packages("pacman")
+pacman::p_load(readxl, janitor, tidyverse)
+
+```
+
+```{r RaceEth, eval= FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+
+###MATH###
+
+#save description
+desc_g8m_race_eth <- read_excel("~/Bamat/NAEP-B-H/g8m_race_eth.xls")[5,1]
+
+#wrangle
+g8m_race_eth <- read_excel("~/Bamat/NAEP-B-H/g8m_race_eth.xls") %>%
+  slice(-1:-7) %>%
+  row_to_names(1) %>%
+  filter(Jurisdiction!=("NA")) %>%
+  mutate(`Standard Error` = parse_number(`Standard Error`)) %>%
+  rename(RaceEth = `Race/ethnicity used to report trends, school-reported`,
+         Mean = `Average scale score`,
+         SE = `Standard Error`) %>%
+  filter(RaceEth == "Black" | RaceEth == "Hispanic") %>%
+  mutate(Mean = str_sub(Mean, 1, 6),
+         Gender = "All") %>%
+  relocate(Gender, .after = RaceEth)
+
+#save
+write_csv(g8m_race_eth, "~/Bamat/NAEP-B-H/g8m_race_eth.csv")
+
+
+###READING###
+
+#save description
+desc_g8r_race_eth <- read_excel("~/Bamat/NAEP-B-H/g8r_race_eth.xls")[5,1]
+
+#wrangle
+g8r_race_eth <- read_excel("~/Bamat/NAEP-B-H/g8r_race_eth.xls") %>%
+  slice(-1:-7) %>%
+  row_to_names(1) %>%
+  filter(Jurisdiction!=("NA")) %>%
+  mutate(`Standard Error` = parse_number(`Standard Error`)) %>%
+  rename(RaceEth = `Race/ethnicity used to report trends, school-reported`,
+         Mean = `Average scale score`,
+         SE = `Standard Error`) %>%
+  filter(RaceEth == "Black" | RaceEth == "Hispanic") %>%
+  mutate(Mean = str_sub(Mean, 1, 6),
+         Gender = "All") %>%
+  relocate(Gender, .after = RaceEth)
+
+#save
+write_csv(g8r_race_eth, "~/Bamat/NAEP-B-H/g8r_race_eth.csv")
+
+```
+
+```{r RaceEthGen, eval= FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+
+###MATH###
+
+#save description
+desc_g8m_race_eth_gen <- read_excel("~/Bamat/NAEP-B-H/g8m_race_eth_gender.xls")[5,1]
+
+#wrangle
+g8m_race_eth_gen <- read_excel("~/Bamat/NAEP-B-H/g8m_race_eth_gender.xls") %>%
+  slice(-1:-8) %>%
+  row_to_names(1) %>%
+  clean_names(.) %>%
+  rename(RaceEth = race_ethnicity_used_to_report_trends_school_reported,
+         M_Mean = average_scale_score,
+         M_SE = standard_error,
+         F_Mean = average_scale_score_2,
+         F_SE = standard_error_2) %>%
+  filter(RaceEth == "Black" | RaceEth == "Hispanic") %>%
+  unite("Male", M_Mean:M_SE) %>%
+  unite("Female", F_Mean:F_SE) %>%
+  pivot_longer(Male:Female, names_to = "Gender", values_to = c("Mean")) %>%
+  mutate(SE = Mean,
+         Mean = str_sub(Mean, 1, 6),
+         SE = str_sub(SE, -5, -1),
+         SE = parse_number(SE)) %>%
+  distinct(.) %>%
+    rename(Jurisdiction = jurisdiction,
+           Year = year) %>%
+  rbind(g8m_race_eth) %>%
+    mutate(RaceEth = as.factor(RaceEth),
+           Gender = as.factor(Gender),
+           Mean = as.numeric(Mean)) %>%
+    arrange(Year, Jurisdiction, Gender)
+
+#Save
+write_csv(g8m_race_eth_gen, "~/Bamat/NAEP-B-H/g8m_race_eth_gen.csv")
+
+
+
+###READING###
+
+#save description
+desc_g8r_race_eth_gen <- read_excel("~/Bamat/NAEP-B-H/g8r_race_eth_gender.xls")[5,1]
+
+#wrangle
+g8r_race_eth_gen <- read_excel("~/Bamat/NAEP-B-H/g8r_race_eth_gender.xls") %>%
+  slice(-1:-8) %>%
+  row_to_names(1) %>%
+  clean_names(.) %>%
+  rename(RaceEth = race_ethnicity_used_to_report_trends_school_reported,
+         M_Mean = average_scale_score,
+         M_SE = standard_error,
+         F_Mean = average_scale_score_2,
+         F_SE = standard_error_2) %>%
+  filter(RaceEth == "Black" | RaceEth == "Hispanic") %>%
+  unite("Male", M_Mean:M_SE) %>%
+  unite("Female", F_Mean:F_SE) %>%
+  pivot_longer(Male:Female, names_to = "Gender", values_to = c("Mean")) %>%
+  mutate(SE = Mean,
+         Mean = str_sub(Mean, 1, 6),
+         SE = str_sub(SE, -5, -1),
+         SE = parse_number(SE)) %>%
+  distinct(.) %>%
+    rename(Jurisdiction = jurisdiction,
+           Year = year) %>%
+  rbind(g8r_race_eth) %>%
+    mutate(RaceEth = as.factor(RaceEth),
+           Gender = as.factor(Gender),
+           Mean = as.numeric(Mean)) %>%
+    arrange(Year, Jurisdiction, Gender)
+
+#Save
+write_csv(g8r_race_eth_gen, "~/Bamat/NAEP-B-H/g8r_race_eth_gen.csv")
+
+```
+
+```{r RaceEthNslp, eval= FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+
+###MATH###
+
+#save description
+desc_g8m_race_eth_nslp <-
+  read_excel("~/Bamat/NAEP-B-H/g8m_race_eth_nslp.xls")[5,1]
+
+#wrangle
+g8m_race_eth_nslp <- read_excel("~/Bamat/NAEP-B-H/g8m_race_eth_nslp.xls") %>% 
+  slice(-1:-8) %>%
+  row_to_names(1) %>%
+  clean_names(.) %>%
+  rename(RaceEth = race_ethnicity_used_to_report_trends_school_reported,
+         E_Mean = average_scale_score,
+         E_SE = standard_error,
+         NE_Mean = average_scale_score_2,
+         NE_SE = standard_error_2) %>%
+  select(1:7) %>%
+  filter(RaceEth == "Black" | RaceEth == "Hispanic") %>%
+  unite("Eligible", E_Mean:E_SE) %>%
+  unite("Not Eligible", NE_Mean:NE_SE) %>%
+  pivot_longer(Eligible:`Not Eligible`, names_to = "NSLP", values_to = c("Mean")) %>%
+  mutate(SE = Mean,
+         Mean = str_sub(Mean, 1, 6),
+         SE = str_sub(SE, -5, -1),
+         SE = parse_number(SE)) %>%
+  distinct(.) %>%
+    rename(Jurisdiction = jurisdiction,
+           Year = year,
+           Gender = NSLP) %>% #temp change for rbind
+  rbind(g8m_race_eth) %>%
+    mutate(RaceEth = as.factor(RaceEth),
+           Gender = as.factor(Gender),
+           Mean = as.numeric(Mean)) %>%
+  rename(NSLP = Gender) %>% #Switch back  
+    arrange(Year, Jurisdiction, NSLP)
+
+#Save
+write_csv(g8m_race_eth_nslp, "~/Bamat/NAEP-B-H/g8m_race_eth_nslp.csv")
+
+###READING###
+
+#save description
+desc_g8r_race_eth_nslp <-
+  read_excel("~/Bamat/NAEP-B-H/g8r_race_eth_nslp.xls")[5,1]
+
+#wrangle
+g8r_race_eth_nslp <- read_excel("~/Bamat/NAEP-B-H/g8r_race_eth_nslp.xls") %>% 
+  slice(-1:-8) %>%
+  row_to_names(1) %>%
+  clean_names(.) %>%
+  rename(RaceEth = race_ethnicity_used_to_report_trends_school_reported,
+         E_Mean = average_scale_score,
+         E_SE = standard_error,
+         NE_Mean = average_scale_score_2,
+         NE_SE = standard_error_2) %>%
+  select(1:7) %>%
+  filter(RaceEth == "Black" | RaceEth == "Hispanic") %>%
+  unite("Eligible", E_Mean:E_SE) %>%
+  unite("Not Eligible", NE_Mean:NE_SE) %>%
+  pivot_longer(Eligible:`Not Eligible`, names_to = "NSLP", values_to = c("Mean")) %>%
+  mutate(SE = Mean,
+         Mean = str_sub(Mean, 1, 6),
+         SE = str_sub(SE, -5, -1),
+         SE = parse_number(SE)) %>%
+  distinct(.) %>%
+    rename(Jurisdiction = jurisdiction,
+           Year = year,
+           Gender = NSLP) %>% #temp change for rbind
+  rbind(g8r_race_eth) %>%
+    mutate(RaceEth = as.factor(RaceEth),
+           Gender = as.factor(Gender),
+           Mean = as.numeric(Mean)) %>%
+  rename(NSLP = Gender) %>% #Switch back  
+    arrange(Year, Jurisdiction, NSLP)
+
+#Save
+write_csv(g8r_race_eth_nslp, "~/Bamat/NAEP-B-H/g8r_race_eth_nslp.csv")
+
+```
