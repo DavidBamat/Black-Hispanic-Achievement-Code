@@ -7,11 +7,32 @@ pacman::p_load(readxl, janitor, tidyverse)
 
 ```
 
+```{r Data, echo=FALSE, message=FALSE, warning=FALSE}
+
+##Change order of 'National public' to be last so that is always the same color##
+
+#main
+df <- read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv')
+
+df$Jurisdiction <- factor(df$Jurisdiction,levels = c('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'DoDEA', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming', 'National public'))
+
+#nslp
+df_nslp <- read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv')
+
+df_nslp$Jurisdiction <- factor(df_nslp$Jurisdiction,levels = c('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'DoDEA', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming', 'National public'))
+
+#gen
+df_gen <- read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv')
+
+df_gen$Jurisdiction <- factor(df_gen$Jurisdiction,levels = c('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'DoDEA', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming', 'National public'))
+
+```
+
 ## Alabama {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Alabama") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -25,15 +46,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
+
+
 
 ```
 
-### Lower Income in Alabama {-}
+### Lower Income & Black in Alabama {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Alabama") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -48,17 +71,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Alabama {-}
+### Black Boys in Alabama {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Alabama") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -73,7 +96,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -82,7 +105,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Alaska") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -96,16 +119,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Alaska {-}
+### Lower Income & Black in Alaska {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Alaska") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -120,17 +143,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Alaska {-}
+### Black Boys in Alaska {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Alaska") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -145,7 +168,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -154,7 +177,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Arizona") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -168,16 +191,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Arizona {-}
+### Lower Income & Black in Arizona {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Arizona") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -192,17 +215,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Arizona {-}
+### Black Boys in Arizona {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Arizona") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -217,7 +240,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -226,7 +249,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Arkansas") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -240,16 +263,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Arkansas {-}
+### Lower Income & Black in Arkansas {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Arkansas") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -264,17 +287,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Arkansas {-}
+### Black Boys in Arkansas {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Arkansas") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -289,7 +312,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -298,7 +321,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="California") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -312,16 +335,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in California {-}
+### Lower Income & Black in California {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="California") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -336,17 +359,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in California {-}
+### Black Boys in California {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="California") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -361,7 +384,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -370,7 +393,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Colorado") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -384,16 +407,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Colorado {-}
+### Lower Income & Black in Colorado {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Colorado") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -408,17 +431,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Colorado {-}
+### Black Boys in Colorado {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Colorado") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -433,7 +456,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -442,7 +465,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Connecticut") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -456,16 +479,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Connecticut {-}
+### Lower Income & Black in Connecticut {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Connecticut") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -480,17 +503,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Connecticut {-}
+### Black Boys in Connecticut {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Connecticut") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -505,7 +528,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -514,7 +537,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Delaware") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -528,16 +551,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Delaware {-}
+### Lower Income & Black in Delaware {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Delaware") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -552,17 +575,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Delaware {-}
+### Black Boys in Delaware {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Delaware") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -577,7 +600,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -586,7 +609,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Florida") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -600,16 +623,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Florida {-}
+### Lower Income & Black in Florida {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Florida") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -624,17 +647,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Florida {-}
+### Black Boys in Florida {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Florida") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -649,7 +672,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -658,7 +681,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Georgia") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -672,16 +695,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Georgia {-}
+### Lower Income & Black in Georgia {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Georgia") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -696,17 +719,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Georgia {-}
+### Black Boys in Georgia {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Georgia") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -721,7 +744,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -730,7 +753,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Hawaii") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -744,16 +767,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Hawaii {-}
+### Lower Income & Black in Hawaii {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Hawaii") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -768,17 +791,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Hawaii {-}
+### Black Boys in Hawaii {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Hawaii") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -793,7 +816,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -803,7 +826,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Idaho") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -817,16 +840,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Idaho {-}
+### Lower Income & Black in Idaho {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Idaho") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -841,17 +864,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Idaho {-}
+### Black Boys in Idaho {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Idaho") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -866,7 +889,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -875,7 +898,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Illinois") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -889,16 +912,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Illinois {-}
+### Lower Income & Black in Illinois {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Illinois") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -913,17 +936,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Illinois {-}
+### Black Boys in Illinois {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Illinois") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -938,7 +961,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -947,7 +970,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Indiana") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -961,16 +984,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Indiana {-}
+### Lower Income & Black in Indiana {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Indiana") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -985,17 +1008,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Indiana {-}
+### Black Boys in Indiana {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Indiana") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1010,7 +1033,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1019,7 +1042,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Iowa") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1033,16 +1056,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Iowa {-}
+### Lower Income & Black in Iowa {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Iowa") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1057,17 +1080,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Iowa {-}
+### Black Boys in Iowa {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Iowa") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1082,7 +1105,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1091,7 +1114,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Kansas") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1105,16 +1128,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Kansas {-}
+### Lower Income & Black in Kansas {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Kansas") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1129,17 +1152,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Kansas {-}
+### Black Boys in Kansas {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Kansas") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1154,7 +1177,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1163,7 +1186,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Kentucky") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1177,16 +1200,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Kentucky {-}
+### Lower Income & Black in Kentucky {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Kentucky") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1201,17 +1224,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Kentucky {-}
+### Black Boys in Kentucky {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Kentucky") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1226,7 +1249,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1235,7 +1258,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Louisiana") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1249,16 +1272,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Louisiana {-}
+### Lower Income & Black in Louisiana {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Louisiana") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1273,17 +1296,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Louisiana {-}
+### Black Boys in Louisiana {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Louisiana") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1298,7 +1321,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1307,7 +1330,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Maine") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1321,16 +1344,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Maine {-}
+### Lower Income & Black in Maine {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Maine") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1345,17 +1368,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Maine {-}
+### Black Boys in Maine {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Maine") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1370,7 +1393,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1379,7 +1402,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Maryland") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1393,16 +1416,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Maryland {-}
+### Lower Income & Black in Maryland {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Maryland") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1417,17 +1440,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Maryland {-}
+### Black Boys in Maryland {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Maryland") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1442,7 +1465,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1451,7 +1474,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Massachusetts") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1465,16 +1488,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Massachusetts {-}
+### Lower Income & Black in Massachusetts {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Massachusetts") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1489,17 +1512,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Massachusetts {-}
+### Black Boys in Massachusetts {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Massachusetts") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1514,7 +1537,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1524,7 +1547,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Michigan") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1538,16 +1561,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Michigan {-}
+### Lower Income & Black in Michigan {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Michigan") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1562,17 +1585,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Michigan {-}
+### Black Boys in Michigan {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Michigan") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1587,7 +1610,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1596,7 +1619,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Minnesota") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1610,16 +1633,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Minnesota {-}
+### Lower Income & Black in Minnesota {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Minnesota") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1634,16 +1657,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Boys in Minnesota {-}
+### Black Boys in Minnesota {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Minnesota") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1658,7 +1681,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1667,7 +1690,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Mississippi") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1681,16 +1704,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Mississippi {-}
+### Lower Income & Black in Mississippi {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Mississippi") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1705,17 +1728,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Mississippi {-}
+### Black Boys in Mississippi {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Mississippi") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1730,7 +1753,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1739,7 +1762,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Missouri") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1753,16 +1776,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Missouri {-}
+### Lower Income & Black in Missouri {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Missouri") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1777,17 +1800,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Missouri {-}
+### Black Boys in Missouri {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Missouri") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1802,7 +1825,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1811,7 +1834,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Montana") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1825,16 +1848,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Montana {-}
+### Lower Income & Black in Montana {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Montana") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -1849,17 +1872,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Montana {-}
+### Black Boys in Montana {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Montana") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -1874,17 +1897,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
-
-
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 ```
 
 ## Nebraska {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Nebraska") %>%
+  mutate(Jurisdiction = factor(Jurisdiction, levels = c('Nebraska', 'National public'))) %>% #Changes order of levels
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
   ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
@@ -1897,17 +1919,18 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Nebraska {-}
+### Lower Income & Black in Nebraska {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Nebraska") %>%
+  mutate(Jurisdiction = factor(Jurisdiction, levels = c('Nebraska', 'National public'))) %>% #Changes order of levels
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1921,18 +1944,19 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Nebraska {-}
+### Black Boys in Nebraska {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Nebraska") %>%
+  mutate(Jurisdiction = factor(Jurisdiction, levels = c('Nebraska', 'National public'))) %>% #Changes order of levels
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1946,7 +1970,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -1955,8 +1979,9 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Nevada") %>%
+  mutate(Jurisdiction = factor(Jurisdiction, levels = c('Nevada', 'National public'))) %>% #Changes order of levels
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
   ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
@@ -1969,17 +1994,18 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Nevada {-}
+### Lower Income & Black in Nevada {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Nevada") %>%
+  mutate(Jurisdiction = factor(Jurisdiction, levels = c('Nevada', 'National public'))) %>% #Changes order of levels
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -1993,18 +2019,19 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Nevada {-}
+### Black Boys in Nevada {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Nevada") %>%
+   mutate(Jurisdiction = factor(Jurisdiction, levels = c('Nevada', 'National public'))) %>% #Changes order of levels
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2018,7 +2045,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2027,8 +2054,9 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New Hampshire") %>%
+   mutate(Jurisdiction = factor(Jurisdiction, levels = c('New Hampshire', 'National public'))) %>% #Changes order of levels
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
   ggplot(aes(x=as.numeric(Year), y=Mean, color=Jurisdiction)) +
@@ -2041,17 +2069,18 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in New Hampshire {-}
+### Lower Income & Black in New Hampshire {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New Hampshire") %>%
+  mutate(Jurisdiction = factor(Jurisdiction, levels = c('New Hampshire', 'National public'))) %>% #Changes order of levels
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2065,18 +2094,19 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in New Hampshire {-}
+### Black Boys in New Hampshire {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New Hampshire") %>%
+  mutate(Jurisdiction = factor(Jurisdiction, levels = c('New Hampshire', 'National public'))) %>% #Changes order of levels
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2090,7 +2120,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2099,7 +2129,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New Jersey") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2113,16 +2143,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in New Jersey {-}
+### Lower Income & Black in New Jersey {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New Jersey") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2137,17 +2167,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in New Jersey {-}
+### Black Boys in New Jersey {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New Jersey") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2162,7 +2192,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2171,7 +2201,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New Mexico") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2185,16 +2215,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in New Mexico {-}
+### Lower Income & Black in New Mexico {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New Mexico") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2209,17 +2239,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in New Mexico {-}
+### Black Boys in New Mexico {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New Mexico") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2234,7 +2264,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2243,7 +2273,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New York") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2257,16 +2287,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in New York {-}
+### Lower Income & Black in New York {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New York") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2281,17 +2311,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in New York {-}
+### Black Boys in New York {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="New York") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2306,7 +2336,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2315,7 +2345,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="North Carolina") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2329,16 +2359,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in North Carolina {-}
+### Lower Income & Black in North Carolina {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="North Carolina") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2353,17 +2383,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in North Carolina {-}
+### Black Boys in North Carolina {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="North Carolina") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2378,7 +2408,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2387,7 +2417,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="North Dakota") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2401,16 +2431,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in North Dakota {-}
+### Lower Income & Black in North Dakota {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="North Dakota") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2425,17 +2455,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in North Dakota {-}
+### Black Boys in North Dakota {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="North Dakota") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2450,7 +2480,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2459,7 +2489,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Ohio") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2473,16 +2503,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Ohio {-}
+### Lower Income & Black in Ohio {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Ohio") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2497,17 +2527,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Ohio {-}
+### Black Boys in Ohio {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Ohio") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2522,7 +2552,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2531,7 +2561,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Oklahoma") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2545,16 +2575,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Oklahoma {-}
+### Lower Income & Black in Oklahoma {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Oklahoma") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2569,17 +2599,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Oklahoma {-}
+### Black Boys in Oklahoma {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Oklahoma") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2594,7 +2624,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2603,7 +2633,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Oregon") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2617,16 +2647,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Oregon {-}
+### Lower Income & Black in Oregon {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Oregon") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2641,17 +2671,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Oregon {-}
+### Black Boys in Oregon {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Oregon") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2666,7 +2696,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2675,7 +2705,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Pennsylvania") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2689,16 +2719,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Pennsylvania {-}
+### Lower Income & Black in Pennsylvania {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Pennsylvania") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2713,17 +2743,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Pennsylvania {-}
+### Black Boys in Pennsylvania {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Pennsylvania") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2738,7 +2768,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2747,7 +2777,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Rhode Island") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2761,16 +2791,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Rhode Island {-}
+### Lower Income & Black in Rhode Island {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Rhode Island") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2785,17 +2815,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Rhode Island {-}
+### Black Boys in Rhode Island {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Rhode Island") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2810,7 +2840,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2819,7 +2849,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="South Carolina") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2833,16 +2863,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in South Carolina {-}
+### Lower Income & Black in South Carolina {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="South Carolina") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2857,17 +2887,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in South Carolina {-}
+### Black Boys in South Carolina {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="South Carolina") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2882,7 +2912,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2891,7 +2921,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="South Dakota") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2905,16 +2935,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in South Dakota {-}
+### Lower Income & Black in South Dakota {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="South Dakota") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -2929,17 +2959,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in South Dakota {-}
+### Black Boys in South Dakota {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="South Dakota") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -2954,7 +2984,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -2963,7 +2993,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Tennessee") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -2977,16 +3007,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Tennessee {-}
+### Lower Income & Black in Tennessee {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Tennessee") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -3001,17 +3031,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Tennessee {-}
+### Black Boys in Tennessee {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Tennessee") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -3026,7 +3056,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -3035,7 +3065,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Texas") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -3049,16 +3079,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Texas {-}
+### Lower Income & Black in Texas {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Texas") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -3073,17 +3103,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Texas {-}
+### Black Boys in Texas {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Texas") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -3098,7 +3128,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -3107,7 +3137,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Utah") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -3121,16 +3151,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Utah {-}
+### Lower Income & Black in Utah {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Utah") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -3145,17 +3175,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Utah {-}
+### Black Boys in Utah {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Utah") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -3170,7 +3200,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -3179,7 +3209,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Vermont") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -3193,16 +3223,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Vermont {-}
+### Lower Income & Black in Vermont {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Vermont") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -3217,17 +3247,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Vermont {-}
+### Black Boys in Vermont {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Vermont") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -3242,7 +3272,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -3251,7 +3281,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Virginia") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -3265,16 +3295,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Virginia {-}
+### Lower Income & Black in Virginia {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Virginia") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -3289,17 +3319,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Virginia {-}
+### Black Boys in Virginia {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Virginia") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -3314,7 +3344,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -3323,7 +3353,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Washington") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -3337,16 +3367,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Washington {-}
+### Lower Income & Black in Washington {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Washington") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -3361,17 +3391,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Washington {-}
+### Black Boys in Washington {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Washington") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -3386,7 +3416,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -3395,7 +3425,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="West Virginia") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -3409,16 +3439,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in West Virginia {-}
+### Lower Income & Black in West Virginia {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="West Virginia") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -3433,17 +3463,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in West Virginia {-}
+### Black Boys in West Virginia {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="West Virginia") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -3458,7 +3488,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -3467,7 +3497,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Wisconsin") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -3481,16 +3511,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Wisconsin {-}
+### Lower Income & Black in Wisconsin {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Wisconsin") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -3505,17 +3535,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Wisconsin {-}
+### Black Boys in Wisconsin {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Wisconsin") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -3530,7 +3560,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
@@ -3539,7 +3569,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth.csv') %>% 
+df %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Wyoming") %>%
   filter(RaceEth=="Black") %>%
   mutate(Mean = as.numeric(Mean)) %>%  
@@ -3553,16 +3583,16 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
-### Lower Income in Wyoming {-}
+### Lower Income & Black in Wyoming {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_nslp.csv') %>% 
+df_nslp %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Wyoming") %>%
   filter(RaceEth=="Black") %>%
   filter(NSLP=="Eligible") %>%
@@ -3577,17 +3607,17 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
 
 
-### Boys in Wyoming {-}
+### Black Boys in Wyoming {-}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievement/main/g8m_race_eth_gen.csv') %>% 
+df_gen %>% 
   filter(Jurisdiction=="National public" | Jurisdiction=="Wyoming") %>%
   filter(RaceEth=="Black") %>%
   filter(Gender=="Male") %>%
@@ -3602,7 +3632,7 @@ read_csv('https://raw.githubusercontent.com/DavidBamat/Black-Hispanic-Achievemen
   xlab("Year") +
   scale_x_continuous(breaks=seq(2003,2022,1)) +
     ggtitle("Grade 8 Math") +
-  theme(legend.position = "bottom") +   scale_color_discrete(name="")
+    theme(legend.position = "bottom") +   scale_color_discrete(name="") +      scale_color_manual(values=c("#228B22", "black"))
 
 
 ```
